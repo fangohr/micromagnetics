@@ -16,31 +16,10 @@ gamma = 2.211e5  # gyromagnetic ratio
 ############
 # Simulation
 ############
-# Finite difference 1D mesh.
-mesh = FDMesh(nx=500, ny=1, nz=1, dx=2, dy=2, dz=2, unit_length=1e-9)
-
-
-# Initial magnetisation function.
-def init_m(pos):
-    x = pos[0]
-    if x < 450:
-        return (1, 0, 0)
-    elif 450 <= x < 550:
-        return (0, 1, 1)
-    else:
-        return (-1, 0, 0)
-
-sim = Sim(mesh)
-sim.alpha = alpha
-sim.gamma = gamma
-sim.Ms = Ms
-sim.add(UniformExchange(A))
-sim.add(UniaxialAnisotropy(K))
-sim.set_m(init_m)
-sim.relax(dt=1e-13, stopping_dmdt=0.001, max_steps=5000)
-
-# Magnetisation x component.
-mx_simulation = sim.spin.reshape((len(sim.spin)/3, 3))[:, 0]
+#
+# Simulation code
+# goes here.
+#
 
 ###################
 # Analytic solution
