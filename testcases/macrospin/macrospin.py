@@ -25,7 +25,7 @@ sim.Ms = Ms
 sim.alpha = alpha
 sim.gamma = gamma
 sim.add(Zeeman((0, 0, H)))
-sim.set_m((1, 1, 1))  # initial magnetisation
+sim.set_m((1, 0, 0))  # initial magnetisation
 
 # Sampling time steps.
 t_array = np.arange(0, 5e-9, 0.01e-9)
@@ -40,10 +40,10 @@ for t in t_array:
 ###################
 # Analytic solution
 ###################
-t0 = 1/(gamma*alpha*H) * np.log(np.sin(np.pi/4)/(1+np.cos(np.pi/4)))
+t0 = 1/(gamma*alpha*H) * np.log(np.sin(np.pi/2)/(1+np.cos(np.pi/2)))
 mx_analytic = []
 for t in t_array:
-    phi = gamma*H*t + np.pi/4
+    phi = gamma*H*t
     costheta = np.tanh(gamma*alpha*H*(t-t0))
     sintheta = 1/np.cosh(gamma*alpha*H*(t-t0))
     mx_analytic.append(sintheta*np.cos(phi))
@@ -52,8 +52,8 @@ for t in t_array:
 # Plot solutions
 ###################
 plt.figure(figsize=(8, 5))
-plt.plot(t_array/1e-9, mx_simulation, label='simulation')
-plt.plot(t_array/1e-9, mx_analytic, '--', label='analytic')
+plt.plot(t_array/1e-9, mx_analytic, 'o', label='analytic')
+plt.plot(t_array/1e-9, mx_simulation, linewidth=2, label='simulation')
 plt.xlabel('t (ns)')
 plt.ylabel('mx')
 plt.grid()
