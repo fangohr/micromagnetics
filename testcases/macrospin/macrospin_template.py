@@ -18,24 +18,10 @@ H = B/mu0
 ############
 # Simulation
 ############
-# Finite difference mesh.
-mesh = FDMesh(nx=1, ny=1, dx=10, dy=10, unit_length=1e-9)
-
-sim = Sim(mesh)
-sim.Ms = Ms
-sim.alpha = alpha
-sim.gamma = gamma
-sim.add(Zeeman((0, 0, H)))
-sim.set_m((1, 0, 0))  # initial magnetisation
-
-# Sampling time steps.
-t_array = np.arange(0, 5e-9, 0.01e-9)
-
-mx_simulation = []
-for t in t_array:
-    sim.run_until(t)
-    m = sim.spin.reshape((len(sim.spin)/3, 3))
-    mx_simulation.append(m[:, 0][0])
+#
+# Simulation code
+# goes here.
+#
 
 
 ###################
