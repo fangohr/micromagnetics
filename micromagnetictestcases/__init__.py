@@ -1,3 +1,3 @@
 from . import macrospin
-from . import domain_wall
+from . import domainwall
 
